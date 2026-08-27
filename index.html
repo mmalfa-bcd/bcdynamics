@@ -48,7 +48,7 @@ nav{
 .nav-cta:hover{background:var(--cyan)!important;color:var(--bg-deep)!important;}
 
 /* Hamburger — hidden on desktop */
-.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;cursor:pointer;background:none;border:none;padding:4px;min-width:44px;min-height:44px;}
 .nav-hamburger span{display:block;width:24px;height:2px;background:var(--white);transition:all 0.3s;}
 .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
 .nav-hamburger.open span:nth-child(2){opacity:0;}
@@ -59,7 +59,9 @@ nav{
   display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:99;
   background:rgba(26,16,53,0.98);backdrop-filter:blur(20px);
   flex-direction:column;justify-content:center;align-items:center;gap:2.5rem;
+  overflow-y:auto;padding:5rem 1.4rem 2.5rem;-webkit-overflow-scrolling:touch;
 }
+@media(max-height:700px){.mobile-menu{gap:1.5rem;justify-content:flex-start;}}
 .mobile-menu.open{display:flex;}
 .mobile-menu a{font-size:1.2rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--white-70);text-decoration:none;transition:color 0.2s;}
 .mobile-menu a:hover,.mobile-menu a:active{color:var(--cyan);}
@@ -170,8 +172,12 @@ section{padding:6rem 3.5rem;}
 .icp-out ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:0.5rem;}
 .icp-out li{font-size:0.76rem;color:var(--white-70);border:1px solid rgba(255,255,255,0.16);
   border-radius:3px;padding:0.35rem 0.7rem;}
-@media(max-width:900px){.services-grid{grid-template-columns:1fr;}.icp-grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:600px){.icp-grid{grid-template-columns:1fr;}}
+@media(max-width:1000px){.services-grid{grid-template-columns:1fr;}.icp-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:768px){.icp-grid{grid-template-columns:1fr;gap:1rem;margin-top:2rem;}
+  .icp-card{padding:1.5rem 1.4rem;}
+  .icp-out{padding:1.5rem 1.4rem;margin-top:2rem;}
+  .icp-out ul{gap:0.4rem;}
+  .svc-steps li{padding:0.85rem 0 0.25rem;}}
 .service-card{background:var(--bg-deep);padding:2.5rem;border:1px solid rgba(95,207,234,0.1);border-left:2px solid transparent;transition:border-left-color 0.3s,transform 0.3s,background 0.3s;position:relative;overflow:hidden;}
 .service-card:hover{border-left-color:var(--cyan);transform:translateX(4px);background:var(--bg-card);}
 .service-icon{width:2.25rem;height:2.25rem;background:rgba(95,207,234,0.08);border:1px solid rgba(95,207,234,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;}
@@ -200,8 +206,7 @@ section{padding:6rem 3.5rem;}
 .btn-submit{background:linear-gradient(135deg,var(--purple-1),var(--cyan) 200%);color:var(--white);padding:0.85rem 2.25rem;font-family:var(--sans);font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;border:none;cursor:pointer;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);transition:opacity 0.2s;}
 .btn-submit:hover{opacity:0.85;}
 .btn-submit[disabled]{opacity:0.55;cursor:default;}
-.lang-switch{display:flex;gap:0.3rem;align-items:center;margin-left:1.4rem;}
-.lang-switch{gap:0;}
+.lang-switch{display:flex;gap:0;align-items:center;margin-left:1.4rem;}
 .lang-btn{background:transparent;border:none;cursor:pointer;font-family:var(--sans);font-size:0.7rem;
   font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--white-40);
   transition:color 0.2s;line-height:1;padding:0.3rem 0.55rem;}
@@ -211,7 +216,7 @@ section{padding:6rem 3.5rem;}
 .mob-lang{display:flex;gap:0.6rem;justify-content:center;margin-top:1.6rem;}
 @media(max-width:900px){.lang-switch:not(.mob-switch){margin-left:0;}}
 .mob-lang{display:none;}
-@media(max-width:768px){.mob-lang{display:flex;}.lang-switch.mob-switch .lang-btn{padding:0.4rem 0.9rem;font-size:0.85rem;}}
+@media(max-width:768px){.mob-lang{display:flex;}.lang-switch.mob-switch .lang-btn{padding:0.75rem 1.1rem;font-size:0.9rem;}}
 .hp-field{position:absolute;left:-9999px;opacity:0;height:0;width:0;}
 .form-status{font-size:0.8rem;margin-top:0.75rem;min-height:1.1rem;}
 .form-status.ok{color:#34d399;}
@@ -287,6 +292,7 @@ footer{background:var(--bg-mid);padding:2.5rem 3.5rem;display:flex;justify-conte
   /* Contact */
   .contact{grid-template-columns:1fr;gap:2.5rem;}
   .form-row{grid-template-columns:1fr;}
+  .form-field input,.form-field textarea,.form-field select{font-size:16px;}
   .submit-row{justify-content:stretch;}
   .btn-submit{width:100%;}
 
@@ -679,8 +685,8 @@ footer{background:var(--bg-mid);padding:2.5rem 3.5rem;display:flex;justify-conte
   </div>
   <div class="fade-up">
     <form class="contact-form" id="contactForm">
-      <!-- ATENCAO: substitua o valor abaixo pela sua Access Key gratuita do Web3Forms -->
-      <input type="hidden" name="access_key" value="COLE_AQUI_SUA_ACCESS_KEY">
+      <!-- Web3Forms: chave publica do formulario, entrega em mmalfa@bcdynamics.net -->
+      <input type="hidden" name="access_key" value="e738a331-7ee4-4aa7-a77f-4ccb1e8f69dd">
       <input type="hidden" name="subject" value="Novo contato pelo site BC Dynamics">
       <input type="hidden" name="from_name" value="Site BC Dynamics">
       <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off">
@@ -1013,11 +1019,13 @@ cForm.addEventListener('submit', async (e) => {
       cStatus.textContent = I18N[LANG]['form.ok'];
     } else {
       cStatus.className = 'form-status err';
-      cStatus.textContent = I18N[LANG]['form.err'];
+      cStatus.textContent = I18N[LANG]['form.err'] + (out.message ? ' [' + out.message + ']' : '');
+      console.error('Web3Forms:', out);
     }
   } catch (err) {
     cStatus.className = 'form-status err';
-    cStatus.textContent = I18N[LANG]['form.err'];
+    cStatus.textContent = I18N[LANG]['form.err'] + ' [' + err.message + ']';
+    console.error('Web3Forms:', err);
   } finally {
     cBtn.disabled = false;
   }
